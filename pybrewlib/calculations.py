@@ -91,3 +91,10 @@ def estimate_mixed_abv_interactive():
 def sg_strength_calc(og, fg):
     "calculate abv content"
     return (og - fg) * 131.25
+
+
+def sg_for_abv(abv, fg):
+    """
+    calculate sg for wanted abv
+    """
+    return (abv / 131.25) + fg
