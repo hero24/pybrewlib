@@ -17,5 +17,10 @@ __all__ = [
     "build_sg_interactive",
     "estimate_mixed_abv",
     "estimate_mixed_abv_interactive",
-    "sg_strength_calc"
+    "sg_strength_calc",
+    "sg_for_abv",
+    "alcohol_units",
+    "alcohol_mass",
+    "e_bac",
+    "blood_alcohol_content"
 ]

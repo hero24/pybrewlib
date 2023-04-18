@@ -92,9 +92,27 @@ def sg_strength_calc(og, fg):
     "calculate abv content"
     return (og - fg) * 131.25
 
-
 def sg_for_abv(abv, fg):
     """
     calculate sg for wanted abv
     """
     return (abv / 131.25) + fg
+
+def alcohol_units(volume, abv):
+    """ retrun alkohol units in drink (irish) """
+    return volume * abv * 0.000789
+
+def alcohol_mass(volume, abv):
+    """ return alcohol mass (volume in liters) """
+    return volume * (abv/100) * 789
+
+def e_bac(mass, body_water_ratio, weight, metabolism, time):
+    """ estimate blood alcohol content """
+    return (mass/(body_water_ratio*weight)) * 100 - metabolism * time
+
+def blood_alcohol_content(volume, abv, weight, time, man=True):
+    """ return estimated bac"""
+    alc_mass = alcohol_mass(volume, abv)
+    if man:
+        return e_bac(alc_mass, 0.68, weight, 0.017, time)
+    return e_bac(alc_mass, 0.55, weight, 0.017, time)
