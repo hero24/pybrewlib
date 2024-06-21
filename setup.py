@@ -6,9 +6,9 @@ from distutils.core import setup
 #  -Eleanor Roosevelt
 
 setup(name="pybrewlib",
-      version="0.1",
+      version="1.0",
       description="Set of calculations for homebrewers and winemakers",
       python_requires=">3.0",
-      author="hero24"
+      author="hero24",
       packages=["pybrewlib"]
       )
