@@ -13,21 +13,21 @@ intput = lambda x: int(input(f"{x[lang]}: "))
 fluput = lambda x: float(input(f"{x[lang]}: "))
 
 
-def dilution_calc(alc_str, water_quantity, alc_quantity): 
+def dilution_approx_calc(alc_str, water_quantity, alc_quantity): 
     """
         calculate abv of diluted drink
     """      
     return (alc_quantity/(alc_quantity + water_quantity)*100) / 100 * alc_str
 
 
-def dillution_outcome(alc_str, alc_wanted, alc_qu):
+def dillution_approx_outcome(alc_str, alc_wanted, alc_qu):
     """ return total quantity of alcohol at given strenght and water required"""
     total_qu = alc_qu * alc_str / alc_wanted
     # alcohol, water
     return alc_qu, total_qu - alc_qu 
 
 
-def dilution_proportions(alc_str, total_qu, alc_wanted):
+def dilution_approx_proportions(alc_str, total_qu, alc_wanted):
     "return proportions to get requested strength and quantity of alcohol"
     spir_req = total_qu / (alc_str / alc_wanted)
     # return spirit, water
@@ -72,6 +72,7 @@ def estimate_mixed_abv(abvs):
         alc_cont += (alc/100) * vol
     return alc_cont/volume*100
 
+
 def estimate_mixed_abv_interactive():
     """ Estimate abv of a drink mixed from other drinks
         (interractive)
@@ -87,10 +88,10 @@ def estimate_mixed_abv_interactive():
     return alc_cont/volume*100
 
 
-
 def sg_strength_calc(og, fg):
     "calculate abv content"
     return (og - fg) * 131.25
+
 
 def sg_for_abv(abv, fg):
     """
@@ -98,17 +99,21 @@ def sg_for_abv(abv, fg):
     """
     return (abv / 131.25) + fg
 
+
 def alcohol_units(volume, abv):
     """ retrun alkohol units in drink (irish) """
     return volume * abv * 0.000789
+
 
 def alcohol_mass(volume, abv):
     """ return alcohol mass (volume in liters) """
     return volume * (abv/100) * 789
 
+
 def e_bac(mass, body_water_ratio, weight, metabolism, time):
     """ estimate blood alcohol content """
     return (mass/(body_water_ratio*weight)) * 100 - metabolism * time
+
 
 def blood_alcohol_content(volume, abv, weight, time, man=True):
     """ return estimated bac"""
@@ -116,3 +121,20 @@ def blood_alcohol_content(volume, abv, weight, time, man=True):
     if man:
         return e_bac(alc_mass, 0.68, weight, 0.017, time)
     return e_bac(alc_mass, 0.55, weight, 0.017, time)
+
+
+def spirit_dilution_water(spirit_abv, spirit_vol, wanted_abv):
+    """
+         acurate formula for diluting spirit with water
+         returns required amount of water
+    """
+    return spirit_abv * spirit_vol / wanted_abv - spirit_vol
+
+
+def spirit_dilution_spirit(spirit_abv, spirit_vol, spirit2_abv, wanted_abv):
+    """ 
+        acurate formula for diluting spirit with other spirit
+        returns amount of other spirit required
+    """
+    return (spirit_abv * spirit_vol - wanted_abv * spirit_vol) / (wanted_abv - spirit2_abv)
+

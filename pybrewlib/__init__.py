@@ -10,9 +10,9 @@ from pybrewlib.calculations import *
 
 __all__ = [
     "cli",
-    "dilution_calc",
-    "dillution_outcome",
-    "dilution_proportions",
+    "dilution_approx_calc",
+    "dillution_approx_outcome",
+    "dilution_approx_proportions",
     "build_sg",
     "build_sg_interactive",
     "estimate_mixed_abv",
@@ -22,5 +22,7 @@ __all__ = [
     "alcohol_units",
     "alcohol_mass",
     "e_bac",
-    "blood_alcohol_content"
+    "blood_alcohol_content",
+    "spirit_dilution_water",
+    "spirit_dilution_spirit"
 ]
